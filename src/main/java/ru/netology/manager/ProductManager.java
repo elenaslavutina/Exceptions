@@ -21,7 +21,7 @@ public class ProductManager {
         try {
             productRepository.removeById(id);
         } catch (Exception exception)
-        {System.out.println("hi");}
+        {System.out.println("Try to remove not existence id " + id);}
 
     }
 

@@ -23,6 +23,7 @@ public class ProductRepository {
         Product result = findById(id);
         if (result == null) {
             throw new NotFoundException("Element with id: \" + id + \" not found");
+
         }
 
         int length = items.length - 1;

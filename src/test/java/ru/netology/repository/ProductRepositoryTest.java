@@ -71,8 +71,7 @@ class ProductRepositoryTest {
     void shouldGenerateNotFoundExceptionIfIdNotExist() {
        int idToRemove = 25;
         assertThrows(NotFoundException.class, () -> repository.removeById(idToRemove));
- //       repository.removeById(idToRemove);
- //       System.out.println("проба");
+        System.out.println("try to remove not existence id  "+ idToRemove );
 
     }
 
