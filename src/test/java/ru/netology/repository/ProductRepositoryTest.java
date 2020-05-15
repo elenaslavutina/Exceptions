@@ -5,12 +5,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Book;
 import ru.netology.domain.Product;
-import ru.netology.service.NotFoundException;
+import ru.netology.exception.NotFoundException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ProductRepositoryTest {
     private ProductRepository repository = new ProductRepository();
+    private ProductRepository repository2 = new ProductRepository();
+
     Book coreJava = new Book(1,"booki",1000,"vfi");
     private Book[] listOfBooks = new Book[]{
             new Book(1, "The rich boy", 1010, "F.S.Fitzgerald"),
@@ -27,9 +29,9 @@ class ProductRepositoryTest {
     };
     @Test
     void shouldSaveOneItem(){
-        repository.save(coreJava);
+        repository2.save(coreJava);
         Product [] expected = new Product[]{coreJava};
-        Product[] actual = repository.findAll();
+        Product[] actual = repository2.findAll();
         assertArrayEquals(expected, actual);
     }
 
@@ -45,11 +47,7 @@ class ProductRepositoryTest {
 
     @Test
     void shouldRemoveById() {
-
- //       for (int i = 0; i < listOfBooks.length; i++) {
- //           repository.save(listOfBooks[i]);
- //       }
-        int idToRemove = 5;
+      int idToRemove = 5;
         repository.removeById(idToRemove);
 
         Product[] expected = new Product[]{
@@ -71,13 +69,10 @@ class ProductRepositoryTest {
 
     @Test
     void shouldGenerateNotFoundExceptionIfIdNotExist() {
-
- //       for (int i = 0; i < listOfBooks.length; i++) {
-//            repository.save(listOfBooks[i]);
-//        }
-        int idToRemove = 25;
-        repository.removeById(idToRemove);
-        System.out.println("проба");
+       int idToRemove = 25;
+        assertThrows(NotFoundException.class, () -> repository.removeById(idToRemove));
+ //       repository.removeById(idToRemove);
+ //       System.out.println("проба");
 
     }
 
