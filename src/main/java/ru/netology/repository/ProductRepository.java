@@ -22,7 +22,7 @@ public class ProductRepository {
     public void removeById(int id) {
         Product result = findById(id);
         if (result == null) {
-            throw new NotFoundException("Element with id: \" + id + \" not found");
+            throw new NotFoundException("Element with id: " + id + " not found");
 
         }
 
